@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     iov[0].iov_len = BUF_SIZE;
 
     const int fd{open(__FILE__, O_RDONLY)};
-    constexpr off_t offset{0x7FFF'FFFF'FFFF'FBFF};
+    constexpr off_t offset{0x7FFF'FFFF'FFFF'FBFF + 1ll};
 
     preadv2(fd, iov, 1, offset, 0);
     close(fd);
