@@ -17,6 +17,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: compile
-      run: g++ prog.cpp
+      run: c++ prog.cpp
     - name: run
       run: ./a.out
