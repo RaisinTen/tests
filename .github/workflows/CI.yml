@@ -17,4 +17,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: print env
-      run: node index.js
+      run: |
+        node index.js
+        python test.py
