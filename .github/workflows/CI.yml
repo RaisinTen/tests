@@ -19,4 +19,5 @@ jobs:
     - name: print env
       run: |
         node index.js
+        python --version
         python test.py
