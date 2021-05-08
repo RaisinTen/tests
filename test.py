@@ -1,4 +1,7 @@
 import os
 
-print(os.devnull)
-print(os.stat(os.devnull))
+devnull = os.devnull
+
+print(devnull)
+print(os.path.exists(devnull))
+print(os.stat(devnull))
