@@ -5,9 +5,5 @@ console.log(`devnull: "${devnull}"`);
 
 console.log(fs.existsSync(devnull));
 
-const fd = fs.openSync(devnull, 'r+');
-console.log(fd);
-const stats = fs.fstatSync(fd);
+const stats = fs.statSync(devnull);
 console.log(stats);
-
-fs.closeSync(fd);
