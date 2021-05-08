@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const devnull = process.platform === 'win32' ? 'Nul' : '/dev/null';
+const devnull = process.platform === 'win32' ? 'NUL' : '/dev/null';
 console.log(`devnull: "${devnull}"`);
 
 console.log(fs.existsSync(devnull));
