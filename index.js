@@ -3,6 +3,8 @@ const fs = require('fs');
 const devnull = process.platform === 'win32' ? '\\\\.\\nul' : '/dev/null';
 console.log(`devnull: "${devnull}"`);
 
+console.log(fs.existsSync(devnull));
+
 const fd = fs.openSync(devnull, 'r+');
 console.log(fd);
 const stats = fs.fstatSync(fd);
