@@ -20,8 +20,9 @@ jobs:
       run: |
         icacls README.md
         dir
-        icacls README.md /deny "everyone":"(D)"
+        icacls README.md /deny "everyone:(D)"
         icacls README.md
+        dir
 
     - name: rm-protected
       run: |
@@ -31,7 +32,10 @@ jobs:
     - name: unprotect
       run: |
         dir
+        icacls README.md
         icacls README.md /remove:d "everyone"
+        icacls README.md
+        dir
 
     - name: rm-unprotected
       run: |
