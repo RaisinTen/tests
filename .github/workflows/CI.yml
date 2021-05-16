@@ -11,17 +11,27 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [ubuntu-latest, macos-latest, windows-latest]
+        platform: [windows-latest]
     runs-on: ${{ matrix.platform }}
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.7'
-    - name: print env
+    - name: protect
       run: |
-        node index.js
-        python --version
-        python test.py
+        dir
+        icacls "README.md" /deny everyone:(DE,WD,AD)
+
+    - name: rm-protected
+      run: |
+        del README.md
+        dir
+
+    - name: unprotect
+      run: |
+        dir
+        icacls "README.md" /remove:d everyone
+
+    - name: rm-unprotected
+      run: |
+        del README.md
+        dir
