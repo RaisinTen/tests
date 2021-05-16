@@ -18,8 +18,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: protect
       run: |
+        icacls README.md
         dir
-        icacls "README.md" /deny everyone:(DE,WD,AD)
+        icacls README.md /deny everyone:(DE,WD,AD)
+        icacls README.md
       shell: cmd
 
     - name: rm-protected
@@ -31,7 +33,7 @@ jobs:
     - name: unprotect
       run: |
         dir
-        icacls "README.md" /remove:d everyone
+        icacls README.md /remove:d everyone
       shell: cmd
 
     - name: rm-unprotected
