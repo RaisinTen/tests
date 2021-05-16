@@ -20,7 +20,7 @@ jobs:
       run: |
         icacls README.md
         dir
-        icacls README.md /deny everyone:(DE,WD,AD)
+        icacls README.md /deny everyone:(D)
         icacls README.md
       shell: cmd
 
