@@ -16,28 +16,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: protect
+    - name: action
       run: |
         icacls README.md
         dir
         icacls README.md /deny "everyone:(D)"
         icacls README.md
         dir
-
-    - name: rm-protected
-      run: |
         del README.md
         dir
-
-    - name: unprotect
-      run: |
         dir
         icacls README.md
         icacls README.md /remove:d "everyone"
         icacls README.md
         dir
-
-    - name: rm-unprotected
-      run: |
         del README.md
         dir
