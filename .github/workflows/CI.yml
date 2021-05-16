@@ -20,18 +20,22 @@ jobs:
       run: |
         dir
         icacls "README.md" /deny everyone:(DE,WD,AD)
+      shell: cmd
 
     - name: rm-protected
       run: |
         del README.md
         dir
+      shell: cmd
 
     - name: unprotect
       run: |
         dir
         icacls "README.md" /remove:d everyone
+      shell: cmd
 
     - name: rm-unprotected
       run: |
         del README.md
         dir
+      shell: cmd
