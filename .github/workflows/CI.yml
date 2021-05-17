@@ -19,12 +19,12 @@ jobs:
     - name: action
       run: |
         echo "view:"
-        icacls README.md
+        attrib README.md
         dir .
 
         echo "protect:"
-        icacls README.md /deny "everyone:(D)"
-        icacls README.md
+        attrib +r README.md
+        attrib README.md
         dir .
 
         echo "del:"
@@ -32,9 +32,9 @@ jobs:
         dir .
 
         echo "unprotect:"
-        icacls README.md
-        icacls README.md /remove:d "everyone"
-        icacls README.md
+        attrib README.md
+        attrib -r README.md
+        attrib README.md
         dir
         del README.md
         dir
