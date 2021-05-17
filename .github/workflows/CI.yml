@@ -28,7 +28,7 @@ jobs:
         dir .
 
         echo "del:"
-        del .github
+        rd /s /q .github
         dir .
 
         echo "unprotect:"
@@ -37,5 +37,5 @@ jobs:
         attrib .github
 
         echo "del:"
-        del .github
+        rd /s /q .github
         dir .
