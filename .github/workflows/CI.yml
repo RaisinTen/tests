@@ -20,11 +20,13 @@ jobs:
       run: |
         echo "view:"
         attrib .github
+        icacls .github
         dir .
 
         echo "protect:"
-        attrib +r .github
+        icacls .github /deny "everyone:(OI)(CI)(DE,DC,AD,WD)"
         attrib .github
+        icacls .github
         dir .
 
         echo "del:"
@@ -33,8 +35,10 @@ jobs:
 
         echo "unprotect:"
         attrib .github
-        attrib -r .github
+        icacls .github
+        icacls .github /remove:d "everyone"
         attrib .github
+        icacls .github
 
         echo "del:"
         rd -r .github
