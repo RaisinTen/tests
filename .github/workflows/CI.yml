@@ -19,19 +19,23 @@ jobs:
     - name: action
       run: |
         echo "view:"
-        attrib README.md
+        attrib .github
         dir .
 
         echo "protect:"
-        attrib +r README.md
-        attrib README.md
+        attrib +r .github
+        attrib .github
+        dir .
+
+        echo "del:"
+        del .github
         dir .
 
         echo "unprotect:"
-        attrib README.md
-        attrib -r README.md
-        attrib README.md
+        attrib .github
+        attrib -r .github
+        attrib .github
 
         echo "del:"
-        del README.md
+        del .github
         dir .
