@@ -27,14 +27,11 @@ jobs:
         attrib README.md
         dir .
 
-        echo "del:"
-        del README.md
-        dir .
-
         echo "unprotect:"
         attrib README.md
         attrib -r README.md
         attrib README.md
-        dir
+
+        echo "del:"
         del README.md
-        dir
+        dir .
