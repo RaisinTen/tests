@@ -18,28 +18,4 @@ jobs:
     - uses: actions/checkout@v2
     - name: action
       run: |
-        echo "view:"
-        attrib .github
-        icacls .github
-        dir .
-
-        echo "protect:"
-        icacls .github /deny "everyone:(OI)(CI)(DE,DC,AD,WD)"
-        attrib .github
-        icacls .github
-        dir .
-
-        echo "del:"
-        rd -r .github
-        dir .
-
-        echo "unprotect:"
-        attrib .github
-        icacls .github
-        icacls .github /remove:d "everyone"
-        attrib .github
-        icacls .github
-
-        echo "del:"
-        rd -r .github
-        dir .
+        node index.js
