@@ -1,1 +1,3 @@
-console.log(process.getuid());
+const os = require('os');
+
+console.log(os.platform());
