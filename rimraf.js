@@ -162,7 +162,7 @@ function rimrafSync(path, options) {
 
 
 function _unlinkSync(path, options) {
-  const tries = options.maxRetries + 1;
+  const tries = 1;
 
   for (let i = 1; i <= tries; i++) {
     try {
