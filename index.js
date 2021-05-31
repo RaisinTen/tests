@@ -5,6 +5,10 @@ const cwdpath = process.cwd();
 const dirpath = path.join(cwdpath, 'dir');
 const filepath = path.join(dirpath, 'file');
 
+process.on('exit', () => {
+  console.log(fs.readdirSync(cwdpath));
+});
+
 fs.mkdirSync(dirpath);
 fs.writeFileSync(filepath, 'hello');
 
