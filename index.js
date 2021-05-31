@@ -12,8 +12,8 @@ process.on('exit', () => {
 fs.mkdirSync(dirpath);
 fs.writeFileSync(filepath, 'hello');
 
-fs.chmodSync(filepath, 0o444);
-fs.chmodSync(dirpath, 0o444);
+fs.chmodSync(filepath, 0o000);
+fs.chmodSync(dirpath, 0o000);
 
 let err = null;
 
