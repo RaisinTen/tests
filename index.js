@@ -21,7 +21,7 @@ fs.chmodSync(dirpath, 0o000);
 let err = null;
 
 try {
-  console.log(fs.readdirSync(midpath));
+  console.log(fs.statSync(midpath));
 } catch (_err) {
   err = _err;
 }
