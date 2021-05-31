@@ -21,7 +21,7 @@ fs.chmodSync(dirpath, 0o000);
 let err = null;
 
 try {
-  console.log(fs.lstatSync(midpath));
+  console.log(fs.lstatSync(filepath));
 } catch (_err) {
   err = _err;
 }
