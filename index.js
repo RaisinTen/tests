@@ -64,6 +64,9 @@ const nextDirPath = (name = 'rm') =>
     let isValidState = true;
     const exists = fs.existsSync(filePath);
 
+    console.log(`1. exists = ${exists}`);
+    console.log(`1. err = ${err}`);
+
     if (common.isWindows && !(exists === true && err === null)) {
       // Since there is no concept of read-only folders on Windows, the
       // unlink syscall can easily get access to the files under the folder
@@ -111,6 +114,9 @@ const nextDirPath = (name = 'rm') =>
 
   let isValidState = true;
   const exists = fs.existsSync(filePath);
+
+  console.log(`2. exists = ${exists}`);
+  console.log(`2. err = ${err}`);
 
   if (common.isWindows && !(exists === true && err === null)) {
     // Since there is no concept of read-only folders on Windows, the unlink
@@ -162,6 +168,9 @@ const nextDirPath = (name = 'rm') =>
   let isValidState = true;
   const exists = fs.existsSync(root);
 
+  console.log(`3. exists = ${exists}`);
+  console.log(`3. err = ${err}`);
+
   if (common.isWindows && !(exists === true && err?.code === 'EPERM')) {
     // Since there is no concept of read-only folders on Windows, the unlink
     // syscall can easily get access to the files under the folder being
@@ -203,6 +212,9 @@ const nextDirPath = (name = 'rm') =>
 
     let isValidState = true;
     const exists = fs.existsSync(root);
+
+    console.log(`4. exists = ${exists}`);
+    console.log(`4. err = ${err}`);
 
     if (common.isWindows && !(exists === true && err?.code === 'EPERM')) {
       // Since there is no concept of read-only folders on Windows, the
