@@ -67,6 +67,8 @@ const nextDirPath = (name = 'rm') =>
     console.log(`1. exists = ${exists}`);
     console.log(`1. err = ${err}`);
     console.log(`1. common.isWindows = ${common.isWindows}`);
+    console.log(`1. !(exists === false && err === null) = ${!(exists === false && err === null)}`);
+    console.log(`1. (common.isWindows && !(exists === false && err === null)) = ${(common.isWindows && !(exists === false && err === null))}`);
 
     if (common.isWindows && !(exists === false && err === null)) {
       // Since there is no concept of read-only folders on Windows, the
