@@ -74,7 +74,7 @@ const nextDirPath = (name = 'rm') =>
     }
 
     if (!isValidState) {
-      throw err;
+      console.error(`1. ${err}`);
     }
   });
 }
@@ -122,7 +122,7 @@ const nextDirPath = (name = 'rm') =>
   }
 
   if (!isValidState) {
-    throw err;
+    console.error(`2. ${err}`);
   }
 }
 
@@ -171,7 +171,7 @@ const nextDirPath = (name = 'rm') =>
     isValidState = false;
   }
   if (!isValidState) {
-    throw err;
+    console.error(`3. ${err}`);
   }
 }
 
@@ -214,7 +214,7 @@ const nextDirPath = (name = 'rm') =>
     }
 
     if (!isValidState) {
-      throw err;
+      console.error(`4. ${err}`);
     }
   });
 }
