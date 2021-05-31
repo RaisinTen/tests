@@ -75,7 +75,7 @@ const nextDirPath = (name = 'rm') =>
       // unlink syscall can easily get access to the files under the folder
       // being removed without an EACCES and remove them.
       isValidState = false;
-    } else if (!(exists === true && err?.code === 'EACCES')) {
+    } else if (!common.isWindows && !(exists === true && err?.code === 'EACCES')) {
       isValidState = false;
     }
 
@@ -126,7 +126,7 @@ const nextDirPath = (name = 'rm') =>
     // syscall can easily get access to the files under the folder being
     // removed without an EACCES and remove them.
     isValidState = false;
-  } else if (!(exists === true && err?.code === 'EACCES')) {
+  } else if (!common.isWindows && !(exists === true && err?.code === 'EACCES')) {
     isValidState = false;
   }
 
@@ -179,9 +179,10 @@ const nextDirPath = (name = 'rm') =>
     // syscall can easily get access to the files under the folder being
     // removed without an EACCES and remove them.
     isValidState = false;
-  } else if (!(exists === true && err?.code === 'EACCES')) {
+  } else if (!common.isWindows && !(exists === true && err?.code === 'EACCES')) {
     isValidState = false;
   }
+
   if (!isValidState) {
     console.error(`3. ${err}`);
   }
@@ -224,7 +225,7 @@ const nextDirPath = (name = 'rm') =>
       // unlink syscall can easily get access to the files under the folder
       // being removed without an EACCES and remove them.
       isValidState = false;
-    } else if (!(exists === true && err?.code === 'EACCES')) {
+    } else if (!common.isWindows && !(exists === true && err?.code === 'EACCES')) {
       isValidState = false;
     }
 
