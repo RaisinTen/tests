@@ -22,5 +22,13 @@ jobs:
         node-version: '16.x'
     - name: action
       run: |
-        node -v
-        node index.js
+        mkdir a
+
+        attrib +r a
+
+        dir
+
+        cl.exe test.c
+        test.exe
+
+        dir
