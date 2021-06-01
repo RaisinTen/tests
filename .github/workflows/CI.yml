@@ -28,7 +28,8 @@ jobs:
 
         dir
 
-        cl.exe test.c
+        cl test.c
+        dir
         test.exe
 
         dir
