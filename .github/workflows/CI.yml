@@ -26,14 +26,5 @@ jobs:
     - name: action
       shell: cmd
       run: |
-        mkdir a
-
-        attrib +r a
-
-        dir
-
-        cl test.c
-        dir
+        cl test.cpp
         test.exe
-
-        dir
