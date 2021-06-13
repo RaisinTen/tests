@@ -13,7 +13,7 @@ void GetLocaleCountryCode() {
         sizeof(locale_name) / sizeof(WCHAR))) {
   }
 
-  wprintf(L"%s\n", ws);
+  wprintf(L"%s\n", locale_name);
 }
 
 int main() {
