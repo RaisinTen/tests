@@ -22,7 +22,6 @@ jobs:
       run: |
         powershell -Command "iwr -useb get.scoop.sh | iex"
         set PATH=%USERPROFILE%\scoop\shims;%PATH%
-        scoop help
-        tree %USERPROFILE%\scoop\ /F /A
+        tree %USERPROFILE%\scoop /F /A
         scoop install shellcheck
-        tree %USERPROFILE%\scoop\ /F /A
+        tree %USERPROFILE%\scoop /F /A
