@@ -22,12 +22,5 @@ jobs:
       run: |
         Set-ExecutionPolicy RemoteSigned -scope CurrentUser
         iwr -useb get.scoop.sh | iex
-        scoop help
-
-    - name: Install shellcheck
-      run: |
         scoop install shellcheck
-
-    - name: Use shellcheck
-      run: |
         shellcheck -V
