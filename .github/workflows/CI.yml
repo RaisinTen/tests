@@ -21,4 +21,5 @@ jobs:
       shell: cmd
       run: |
         powershell -Command "iwr -useb get.scoop.sh | iex"
+        set PATH=%USERPROFILE%\scoop\shims;%PATH%
         scoop -v
