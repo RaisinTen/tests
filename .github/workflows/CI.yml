@@ -20,4 +20,5 @@ jobs:
     - name: action
       shell: cmd
       run: |
+        powershell -Command "iwr -useb get.scoop.sh | iex"
         scoop -v
