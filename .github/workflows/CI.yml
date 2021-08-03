@@ -25,3 +25,4 @@ jobs:
         tree %USERPROFILE%\scoop /F /A
         scoop install shellcheck
         tree %USERPROFILE%\scoop /F /A
+        shellcheck -V
