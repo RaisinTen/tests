@@ -19,20 +19,14 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install choco
-      # shell: cmd
       run: |
+        Set-ExecutionPolicy RemoteSigned -scope CurrentUser
         iwr -useb get.scoop.sh | iex
-        set PATH=%USERPROFILE%\scoop\shims;%PATH%
-        tree %USERPROFILE%\scoop /F /A
 
     - name: Install shellcheck
-      # shell: cmd
       run: |
-        tree %USERPROFILE%\scoop /F /A
         scoop install shellcheck
-        tree %USERPROFILE%\scoop /F /A
 
     - name: Use shellcheck
-      # shell: cmd
       run: |
         shellcheck -V
