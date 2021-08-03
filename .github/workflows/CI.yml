@@ -18,10 +18,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install choco
+    - name: Install scoop
       run: |
         Set-ExecutionPolicy RemoteSigned -scope CurrentUser
         iwr -useb get.scoop.sh | iex
+        scoop help
 
     - name: Install shellcheck
       run: |
