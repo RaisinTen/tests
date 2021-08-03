@@ -17,12 +17,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: action
+
+    - name: Install choco
       shell: cmd
       run: |
         powershell -Command "iwr -useb get.scoop.sh | iex"
         set PATH=%USERPROFILE%\scoop\shims;%PATH%
         tree %USERPROFILE%\scoop /F /A
+
+    - name: Install choco
+      shell: cmd
+      run: |
+        tree %USERPROFILE%\scoop /F /A
         scoop install shellcheck
         tree %USERPROFILE%\scoop /F /A
+
+    - name: Use shellcheck
+      shell: cmd
+      run: |
         shellcheck -V
