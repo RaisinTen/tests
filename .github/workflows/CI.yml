@@ -18,6 +18,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Command subst
+      shell: cmd
+      run: |
+        echo =%type README.md%=
+
     - name: Install scoop
       run: |
         Set-ExecutionPolicy RemoteSigned -scope CurrentUser
