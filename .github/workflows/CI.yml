@@ -21,6 +21,7 @@ jobs:
     - name: Command subst
       shell: cmd
       run: |
+        type README.md
         echo =%type README.md%=
 
     - name: Install scoop
