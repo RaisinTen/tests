@@ -18,11 +18,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Command subst
-      shell: cmd
+    - name: Print platform
+      shell: bash
       run: |
-        type README.md
-        echo =%type\ README.md%=
+        python3 -c "import sys; print(sys.platform)"
 
     - name: Install scoop
       run: |
