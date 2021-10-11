@@ -18,14 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Print platform
-      shell: bash
+    - name: Envinfo
+      shell: cmd
       run: |
-        python3 -c "import sys; print(sys.platform)"
-
-    - name: Install scoop
-      run: |
-        Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-        iwr -useb get.scoop.sh | iex
-        scoop install shellcheck
-        shellcheck -V
+        cmake --help
