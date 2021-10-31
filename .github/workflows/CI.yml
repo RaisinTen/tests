@@ -18,10 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Envinfo
-      run: npx envinfo
-
-    - name: Build
-      shell: cmd
+    - name: Test
       run: |
-        cmake --help
+        node -v
+        node test.js
