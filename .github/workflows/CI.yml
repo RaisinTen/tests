@@ -8,7 +8,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # platform: [ubuntu-latest, macos-latest, windows-latest]
+        platform: [windows-latest]
+    runs-on: ${{ matrix.platform }}
 
     steps:
     - uses: actions/checkout@v2
@@ -17,18 +22,6 @@ jobs:
       run: npx envinfo
 
     - name: Build
+      shell: cmd
       run: |
-        git clone https://github.com/llvm/llvm-project.git
-        cd llvm-project
-        git reset --hard 632668c1c0e7dcf97154d2e377491cdc8cb6963c
-        mkdir build
-        cd build
-        cmake -G Ninja -DCMAKE_BUILD_TYPE=MinSizeRel -DLLVM_BUILD_STATIC=true -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_GENERATOR_PLATFORM=x86 ../llvm
-        ninja clang-format
-        strip bin/clang-format
-
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: clang-format
-        path: build/bin/clang-format
+        cmake --help
