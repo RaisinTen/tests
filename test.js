@@ -1,9 +1,6 @@
-const fs = require('fs');
+const { app, safeStorage } = require("electron");
 
-console.log(fs.statSync('C:\\Windows'));
-fs.chmodSync('C:\\Windows', 0o000);
-console.log(fs.statSync('C:\\Windows'));
+console.log(safeStorage.isEncryptionAvailable());
+console.log(safeStorage.encryptString("hello"));
 
-console.log(fs.statSync('C:\\Windows'));
-fs.chmodSync('C:\\Windows', 0o777);
-console.log(fs.statSync('C:\\Windows'));
+app.quit();

@@ -1,0 +1,23 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "This is a test Nothing to see here",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaisinTen/tests.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaisinTen/tests/issues"
+  },
+  "homepage": "https://github.com/RaisinTen/tests#readme",
+  "dependencies": {
+    "electron": "^18.0.3"
+  }
+}
