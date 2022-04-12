@@ -5,8 +5,8 @@ const { setTimeout: setTimeoutPromises } = require('timers/promises');
   await app.whenReady();
   new BrowserWindow();
   await setTimeoutPromises(10000);
-  console.log(safeStorage.isEncryptionAvailable());
-  console.log(safeStorage.encryptString("hello"));
+  // console.log(safeStorage.isEncryptionAvailable());
+  // console.log(safeStorage.encryptString("hello"));
 })()
   .then(app.quit)
   .catch((err) => {
