@@ -1,9 +1,7 @@
 const { app, safeStorage } = require('electron');
-const { setTimeout: setTimeoutPromises } = require('timers/promises');
 
 (async () => {
   await app.whenReady();
-  await setTimeoutPromises(10000);
   console.log(safeStorage.isEncryptionAvailable());
   console.log(safeStorage.encryptString("hello"));
 })()
