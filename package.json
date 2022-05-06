@@ -4,6 +4,7 @@
   "description": "This is a test Nothing to see here",
   "main": "index.js",
   "scripts": {
+    "version": "electron -v",
     "start": "electron test.js"
   },
   "repository": {
@@ -18,6 +19,6 @@
   },
   "homepage": "https://github.com/RaisinTen/tests#readme",
   "dependencies": {
-    "electron": "^18.0.3"
+    "electron": "18.1.0"
   }
 }

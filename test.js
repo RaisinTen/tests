@@ -1,9 +1,8 @@
-const { app, safeStorage } = require('electron');
+const { app } = require('electron');
 
 (async () => {
   await app.whenReady();
-  console.log(safeStorage.isEncryptionAvailable());
-  console.log(safeStorage.encryptString("hello"));
+  console.log('Hello, world!');
 })()
   .then(app.quit)
   .catch((err) => {

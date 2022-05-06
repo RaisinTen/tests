@@ -23,4 +23,5 @@ jobs:
     - name: Test
       run: |
         npm i
+        npm run version
         npm start
