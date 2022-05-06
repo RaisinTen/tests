@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/RaisinTen/tests#readme",
   "dependencies": {
-    "electron": "18.1.0"
+    "electron": "18.0.0"
   }
 }
