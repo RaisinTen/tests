@@ -22,4 +22,5 @@ jobs:
 
     - name: Test
       run: |
+        where node
         where signtool
