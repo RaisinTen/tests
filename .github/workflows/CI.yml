@@ -24,4 +24,4 @@ jobs:
       shell: cmd
       run: |
         where node
-        where signtool
+        'C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x86\signtool.exe'
