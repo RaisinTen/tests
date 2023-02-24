@@ -21,6 +21,7 @@ jobs:
         node-version: '19.x'
 
     - name: Test
+      shell: cmd
       run: |
         where node
         where signtool
