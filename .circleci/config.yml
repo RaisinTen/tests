@@ -14,5 +14,6 @@ jobs:
             echo hello
       - run:
           name: Running tests
+          shell: cmd
           command: |
-            node -p 'os.version()'
+            signtool
