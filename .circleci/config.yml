@@ -1,19 +1,86 @@
 version: 2.1
 
-orbs:
-  win: circleci/windows@4.1.1
+executors:
+  macos-x64:
+    macos:
+      xcode: "13.4.1"
+    resource_class: macos.x86.medium.gen2
+
+commands:
+  dependencies:
+    steps:
+      - run:
+          name: Install automake
+          command: brew install automake
+
+      - run:
+          name: Clone openssl
+          command: git clone --depth 1 -b openssl-3.0.8+quic https://github.com/quictls/openssl
+
+      - run:
+          name: Clone nghttp3
+          command: git clone https://github.com/ngtcp2/nghttp3
+
+      - run:
+          name: Clone ngtcp2
+          command: git clone https://github.com/ngtcp2/ngtcp2
+
+      - run:
+          name: Clone curl
+          command: git clone https://github.com/curl/curl
+
+  build:
+    steps:
+      - run:
+          name: Build openssl
+          command: |
+            cd openssl
+            ./config enable-tls1_3 --prefix=$(realpath $PWD/../openssl-install)
+            make -j16
+            make install
+
+      - run:
+          name: Build nghttp3
+          command: |
+            cd nghttp3
+            autoreconf -fi
+            ./configure --prefix=$(realpath $PWD/../nghttp3-install) --enable-lib-only
+            make -j16
+            make install
+
+      - run:
+          name: Build ngtcp2
+          command: |
+            cd ngtcp2
+            autoreconf -fi
+             ./configure --prefix=$(realpath $PWD/../ngtcp2-install) --enable-lib-only
+            make -j16
+            make install
+
+      - run:
+          name: Build curl
+          command: |
+            cd curl
+            autoreconf -fi
+            ./configure --with-openssl=../openssl-install --with-nghttp3=../nghttp3-install --with-ngtcp2=../ngtcp2-install
+            make -j16
+            make install
+
+  test:
+    steps:
+      - run:
+          name: Send regular HTTP request
+          command: ./curl-install/bin/curl https://www.google.com
+
+      - run:
+          name: Send HTTP3 request
+          command: ./curl-install/bin/curl --http3 https://www.google.com
 
 jobs:
   build:
-    executor:
-      name: "win/default"
+    executor: macos-x64
     steps:
       - checkout
-      - run:
-          command: |
-            echo hello
-      - run:
-          name: Running tests
-          shell: cmd
-          command: |
-            signtool
+      - dependencies
+      - build
+      - test
