@@ -8,6 +8,10 @@ commands:
           command: brew install automake
 
       - run:
+          name: Install coreutils
+          command: brew install coreutils
+
+      - run:
           name: Clone openssl
           command: git clone --depth 1 -b openssl-3.0.8+quic https://github.com/quictls/openssl
 
