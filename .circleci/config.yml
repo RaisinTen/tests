@@ -12,6 +12,10 @@ commands:
           command: brew install coreutils
 
       - run:
+          name: Install libtool
+          command: brew install libtool
+
+      - run:
           name: Clone openssl
           command: git clone --depth 1 -b openssl-3.0.8+quic https://github.com/quictls/openssl
 
