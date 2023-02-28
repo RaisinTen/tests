@@ -16,6 +16,10 @@ commands:
           command: brew install libtool
 
       - run:
+          name: Install pkg-config
+          command: brew install pkg-config
+
+      - run:
           name: Clone openssl
           command: git clone --depth 1 -b openssl-3.0.8+quic https://github.com/quictls/openssl
 
