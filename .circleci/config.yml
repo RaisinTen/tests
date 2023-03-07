@@ -68,7 +68,7 @@ commands:
           command: |
             cd curl
             autoreconf -fi
-            ./configure PKG_CONFIG_PATH="$(realpath $PWD/../openssl-install/lib/pkgconfig):$(realpath $PWD/../nghttp3-install/lib/pkgconfig):$(realpath $PWD/../ngtcp2-install/lib/pkgconfig)" --with-openssl=../openssl-install --with-nghttp3=../nghttp3-install --with-ngtcp2=../ngtcp2-install --prefix=$(realpath $PWD/../curl-install)
+            ./configure PKG_CONFIG_PATH="$(realpath $PWD/../openssl-install/lib/pkgconfig):$(realpath $PWD/../nghttp3-install/lib/pkgconfig):$(realpath $PWD/../ngtcp2-install/lib/pkgconfig)" --with-openssl="$(realpath $PWD/../openssl-install)" --with-nghttp3="$(realpath $PWD/../nghttp3-install)" --with-ngtcp2="$(realpath $PWD/../ngtcp2-install)" --prefix=$(realpath $PWD/../curl-install)
             make -j16
             make install
 
