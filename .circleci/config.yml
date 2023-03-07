@@ -41,17 +41,15 @@ commands:
           name: Build openssl
           command: |
             cd openssl
-            ./config enable-tls1_3 --prefix=$(realpath $PWD/../openssl-install)
-            make -j16
-            make install
+            ./config --prefix=$HOME/all --libdir=$HOME/all/lib
+            make install_sw
 
       - run:
           name: Build nghttp3
           command: |
             cd nghttp3
             autoreconf -fi
-            ./configure --prefix=$(realpath $PWD/../nghttp3-install) --enable-lib-only
-            make -j16
+            ./configure --prefix=$HOME/all PKG_CONFIG_PATH="$HOME/all/lib/pkgconfig" --enable-lib-only
             make install
 
       - run:
@@ -59,8 +57,7 @@ commands:
           command: |
             cd ngtcp2
             autoreconf -fi
-             ./configure --prefix=$(realpath $PWD/../ngtcp2-install) --enable-lib-only
-            make -j16
+            ./configure --prefix=$HOME/all PKG_CONFIG_PATH="$HOME/all/lib/pkgconfig" --enable-lib-only --with-openssl
             make install
 
       - run:
@@ -68,19 +65,18 @@ commands:
           command: |
             cd curl
             autoreconf -fi
-            ./configure PKG_CONFIG_PATH="$(realpath $PWD/../openssl-install/lib/pkgconfig):$(realpath $PWD/../nghttp3-install/lib/pkgconfig):$(realpath $PWD/../ngtcp2-install/lib/pkgconfig)" --with-openssl="$(realpath $PWD/../openssl-install)" --with-nghttp3="$(realpath $PWD/../nghttp3-install)" --with-ngtcp2="$(realpath $PWD/../ngtcp2-install)" --prefix=$(realpath $PWD/../curl-install)
-            make -j16
+            ./configure --prefix=$HOME/all --with-openssl=$HOME/all PKG_CONFIG_PATH="$HOME/all/lib/pkgconfig" LDFLAGS="-Wl,-rpath,$HOME/all/lib" --with-ngtcp2=$HOME/all --enable-warnings --enable-werror --enable-debug --with-test-nghttpx="$HOME/all/bin/nghttpx"
             make install
 
   test:
     steps:
       - run:
           name: Send regular HTTP request
-          command: ./curl-install/bin/curl https://www.google.com
+          command: $HOME/all/bin/curl https://www.google.com
 
       - run:
           name: Send HTTP3 request
-          command: ./curl-install/bin/curl --http3 https://www.google.com
+          command: $HOME/all/bin/curl --http3 https://www.google.com
 
 jobs:
   build:
