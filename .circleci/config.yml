@@ -25,15 +25,15 @@ commands:
 
       - run:
           name: Clone nghttp3
-          command: git clone https://github.com/ngtcp2/nghttp3
+          command: git clone --depth 1 -b v0.9.0 https://github.com/ngtcp2/nghttp3
 
       - run:
           name: Clone ngtcp2
-          command: git clone https://github.com/ngtcp2/ngtcp2
+          command: git clone --depth 1 -b v0.13.1 https://github.com/ngtcp2/ngtcp2
 
       - run:
           name: Clone curl
-          command: git clone https://github.com/curl/curl
+          command: git clone --depth 1 -b curl-7_88_1 https://github.com/curl/curl
 
   build:
     steps:
