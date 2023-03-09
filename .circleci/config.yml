@@ -65,7 +65,7 @@ commands:
           command: |
             cd curl
             autoreconf -fi
-            ./configure --prefix=$(realpath $PWD/../install) --with-openssl=$(realpath $PWD/../install) PKG_CONFIG_PATH="$(realpath $PWD/../install/lib/pkgconfig)" LDFLAGS="-Wl,-rpath,$(realpath $PWD/../install/lib)" --with-ngtcp2=$(realpath $PWD/../install)" --enable-warnings --enable-werror --enable-debug --with-test-nghttpx="$(realpath $PWD/../install/bin/nghttpx)"
+            ./configure --prefix=$(realpath $PWD/../install) --with-openssl=$(realpath $PWD/../install) PKG_CONFIG_PATH="$(realpath $PWD/../install/lib/pkgconfig)" LDFLAGS="-Wl,-rpath,$(realpath $PWD/../install/lib)" --with-ngtcp2="$(realpath $PWD/../install)" --enable-warnings --enable-werror --enable-debug --with-test-nghttpx="$(realpath $PWD/../install/bin/nghttpx)"
             make CFLAGS="-mmacosx-version-min=10.15 -Wno-deprecated-declarations" install
 
   test:
