@@ -71,6 +71,10 @@ commands:
   test:
     steps:
       - run:
+          name: Curl version
+          command: install/bin/curl --version
+
+      - run:
           name: Send regular HTTP request
           command: install/bin/curl https://www.google.com
 
