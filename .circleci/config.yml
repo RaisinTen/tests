@@ -41,7 +41,7 @@ commands:
           name: Build openssl
           command: |
             cd openssl
-            ./config --prefix=$HOME/all --libdir=$HOME/all/lib
+            ./config --prefix=$(realpath $PWD/../install) --libdir=$(realpath $PWD/../install/lib)
             make install_sw
 
       - run:
@@ -49,7 +49,7 @@ commands:
           command: |
             cd nghttp3
             autoreconf -fi
-            ./configure --prefix=$HOME/all PKG_CONFIG_PATH="$HOME/all/lib/pkgconfig" --enable-lib-only
+            ./configure --prefix=$(realpath $PWD/../install) PKG_CONFIG_PATH="$(realpath $PWD/../install/lib/pkgconfig)" --enable-lib-only
             make install
 
       - run:
@@ -57,7 +57,7 @@ commands:
           command: |
             cd ngtcp2
             autoreconf -fi
-            ./configure --prefix=$HOME/all PKG_CONFIG_PATH="$HOME/all/lib/pkgconfig" --enable-lib-only --with-openssl
+            ./configure --prefix=$(realpath $PWD/../install) PKG_CONFIG_PATH="$(realpath $PWD/../install/lib/pkgconfig)" --enable-lib-only --with-openssl
             make install
 
       - run:
@@ -65,18 +65,18 @@ commands:
           command: |
             cd curl
             autoreconf -fi
-            ./configure --prefix=$HOME/all --with-openssl=$HOME/all PKG_CONFIG_PATH="$HOME/all/lib/pkgconfig" LDFLAGS="-Wl,-rpath,$HOME/all/lib" --with-ngtcp2=$HOME/all --enable-warnings --enable-werror --enable-debug --with-test-nghttpx="$HOME/all/bin/nghttpx"
+            ./configure --prefix=$(realpath $PWD/../install) --with-openssl=$(realpath $PWD/../install) PKG_CONFIG_PATH="$(realpath $PWD/../install/lib/pkgconfig)" LDFLAGS="-Wl,-rpath,$(realpath $PWD/../install/lib)" --with-ngtcp2=$(realpath $PWD/../install)" --enable-warnings --enable-werror --enable-debug --with-test-nghttpx="$(realpath $PWD/../install/bin/nghttpx)"
             make CFLAGS="-mmacosx-version-min=10.15 -Wno-deprecated-declarations" install
 
   test:
     steps:
       - run:
           name: Send regular HTTP request
-          command: $HOME/all/bin/curl https://www.google.com
+          command: $(realpath $PWD/../install/bin/curl) https://www.google.com
 
       - run:
           name: Send HTTP3 request
-          command: $HOME/all/bin/curl --http3 https://www.google.com
+          command: $(realpath $PWD/../install/bin/curl) --http3 https://www.google.com
 
 jobs:
   build:
