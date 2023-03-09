@@ -72,11 +72,11 @@ commands:
     steps:
       - run:
           name: Send regular HTTP request
-          command: $(realpath $PWD/../install/bin/curl) https://www.google.com
+          command: install/bin/curl https://www.google.com
 
       - run:
           name: Send HTTP3 request
-          command: $(realpath $PWD/../install/bin/curl) --http3 https://www.google.com
+          command: install/bin/curl --http3 https://www.google.com
 
 jobs:
   build:
