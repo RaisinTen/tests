@@ -3,17 +3,17 @@ version: 2.1
 orbs:
   win: circleci/windows@4.1.1
 
+executors:
+  macos-x64:
+    macos:
+      xcode: "13.4.1"
+    resource_class: macos.x86.medium.gen2
+
 jobs:
   build:
-    executor:
-      name: "win/default"
+    executor: macos-x64
     steps:
       - checkout
       - run:
           command: |
             echo hello
-      - run:
-          name: Running tests
-          shell: cmd
-          command: |
-            signtool
