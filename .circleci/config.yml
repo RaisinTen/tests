@@ -6,7 +6,7 @@ orbs:
 executors:
   macos-x64:
     macos:
-      xcode: "14.2"
+      xcode: "14.3"
     resource_class: macos.x86.medium.gen2
 
 jobs:
