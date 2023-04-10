@@ -6,7 +6,7 @@ orbs:
 executors:
   macos-x64:
     macos:
-      xcode: "13.4.1"
+      xcode: "14.2"
     resource_class: macos.x86.medium.gen2
 
 jobs:
@@ -16,4 +16,4 @@ jobs:
       - checkout
       - run:
           command: |
-            echo hello
+            clang++ -std=c++14 -c test.mm -fobjc-arc
