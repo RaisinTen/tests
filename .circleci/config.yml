@@ -16,4 +16,8 @@ jobs:
       - checkout
       - run:
           command: |
+            xcodebuild -version
+            clang++ --version
+      - run:
+          command: |
             clang++ -std=c++14 -c test.mm -fobjc-arc
