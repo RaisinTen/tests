@@ -3,21 +3,13 @@ version: 2.1
 orbs:
   win: circleci/windows@4.1.1
 
-executors:
-  macos-x64:
-    macos:
-      xcode: "14.3"
-    resource_class: macos.x86.medium.gen2
-
 jobs:
   build:
-    executor: macos-x64
+    executor:
+      name: "win/default"
+      shell: cmd.exe
     steps:
       - checkout
       - run:
           command: |
-            xcodebuild -version
-            clang++ --version
-      - run:
-          command: |
-            clang++ -std=c++14 -c test.mm -fobjc-arc
+            node --version
