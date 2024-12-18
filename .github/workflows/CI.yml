@@ -19,32 +19,47 @@ jobs:
       uses: ilammy/msvc-dev-cmd@v1
     - uses: actions/checkout@v2
 
-    - name: Compile
+    - name: Compile program that uses SHGetFolderPath to read the Start menu folder path
       shell: cmd
       run: |
         cl test.c /link Shell32.lib
 
-    - name: Query registry
+    - name: Query Start menu folder path from registry
       shell: cmd
       run: |
         reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "Start Menu"
 
-    - name: Test
+    - name: Read Start menu folder path using SHGetFolderPath
       shell: cmd
       run: |
         test.exe
 
-    - name: Modify registry
+    - name: Modify Start menu folder path to another existing folder path in registry
       shell: cmd
       run: |
-        reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /t REG_SZ /v "Start Menu" /d "lol" /f
+        reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /t REG_SZ /v "Start Menu" /d "C:\Users\runneradmin\AppData\Roaming\Microsoft\Windows" /f
 
-    - name: Query registry
+    - name: Query Start menu folder path from registry
       shell: cmd
       run: |
         reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "Start Menu"
 
-    - name: Test
+    - name: Read Start menu folder path using SHGetFolderPath
+      shell: cmd
+      run: |
+        test.exe
+
+    - name: Modify Start menu folder path to inexistent folder path in registry
+      shell: cmd
+      run: |
+        reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /t REG_SZ /v "Start Menu" /d "lol" /f
+
+    - name: Query Start menu folder path from registry
+      shell: cmd
+      run: |
+        reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "Start Menu"
+
+    - name: Read Start menu folder path using SHGetFolderPath
       shell: cmd
       run: |
         test.exe
