@@ -63,3 +63,18 @@ jobs:
       shell: cmd
       run: |
         test.exe
+
+    - name: Delete Start menu folder path from the registry
+      shell: cmd
+      run: |
+        reg delete "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /f /v "Start Menu"
+
+    - name: Query Start menu folder path from registry
+      shell: cmd
+      run: |
+        reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "Start Menu"
+
+    - name: Read Start menu folder path using SHGetFolderPath
+      shell: cmd
+      run: |
+        test.exe
