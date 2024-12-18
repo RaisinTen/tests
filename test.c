@@ -1,26 +1,23 @@
-#include <direct.h>
-#include <errno.h>
+#include <Windows.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 int main(int argc, char *argv[]) {
-  if (_rmdir("a") == -1) {
-    fprintf(stderr,
-            "%s failed: errno(%d) = \"%s\", _doserrno = %d\n",
-            "_rmdir",
-            errno,
-            strerror(errno),
-            _doserrno);
-    exit(EXIT_FAILURE);
-  }
+  // Refs: https://referencesource.microsoft.com/#mscorlib/system/environment.cs,1506
+  char start_menu_folder_path[MAX_PATH];
+  int result = SHGetFolderPathA(
+      0,
+      CSIDL_STARTMENU,
+      0,
+      SHGFP_TYPE_CURRENT,
+      start_menu_folder_path);
 
-  fprintf(stdout,
-          "%s succeeded: errno(%d) = \"%s\", _doserrno = %d\n",
-          "_rmdir",
-          errno,
-          strerror(errno),
-          _doserrno);
+  if (result == S_OK) {
+    // Success case, so print the start menu folder path.
+    printf("Start menu folder path: \"%s\"\n", start_menu_folder_path);
+  } else {
+    // Error case, so print the error.
+    printf("Error code: %d\n", result);
+  }
 
   return 0;
 }
