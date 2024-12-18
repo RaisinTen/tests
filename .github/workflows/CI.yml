@@ -22,5 +22,5 @@ jobs:
     - name: Test
       shell: cmd
       run: |
-        cl test.c
+        cl test.c /link Shell32.lib
         test.exe
