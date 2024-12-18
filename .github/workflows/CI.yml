@@ -19,8 +19,32 @@ jobs:
       uses: ilammy/msvc-dev-cmd@v1
     - uses: actions/checkout@v2
 
-    - name: Test
+    - name: Compile
       shell: cmd
       run: |
         cl test.c /link Shell32.lib
+
+    - name: Query registry
+      shell: cmd
+      run: |
+        reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "Start Menu"
+
+    - name: Test
+      shell: cmd
+      run: |
+        test.exe
+
+    - name: Modify registry
+      shell: cmd
+      run: |
+        reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /t REG_SZ /v "Start Menu" /d "lol" /f
+
+    - name: Query registry
+      shell: cmd
+      run: |
+        reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "Start Menu"
+
+    - name: Test
+      shell: cmd
+      run: |
         test.exe
