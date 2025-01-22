@@ -32,7 +32,7 @@ jobs:
     - name: Query Start menu folder descriptions from registry
       shell: cmd
       run: |
-        reg query "Software\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions" /v "{625B53C3-AB48-4EC1-BA1F-A1EF4146FC19}"
+        reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions" /v "{625B53C3-AB48-4EC1-BA1F-A1EF4146FC19}"
 
     - name: Read Start menu folder path using SHGetFolderPath
       shell: cmd
