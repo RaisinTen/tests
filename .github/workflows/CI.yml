@@ -19,10 +19,29 @@ jobs:
       uses: ilammy/msvc-dev-cmd@v1
     - uses: actions/checkout@v2
 
-    - name: Query Start menu folder descriptions from registry
+    - name: Query folder descriptions from local machine registry
+      shell: cmd
+      run: |
+        reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions" /s
+      continue-on-error: true
+
+    - name: Query folder descriptions from current user registry
+      shell: cmd
+      run: |
+        reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions" /s
+      continue-on-error: true
+
+    - name: Query Start menu folder descriptions from local machine registry
+      shell: cmd
+      run: |
+        reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{625B53C3-AB48-4EC1-BA1F-A1EF4146FC19}"
+      continue-on-error: true
+
+    - name: Query Start menu folder descriptions from current user registry
       shell: cmd
       run: |
         reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{625B53C3-AB48-4EC1-BA1F-A1EF4146FC19}"
+      continue-on-error: true
 
     - name: Compile program that uses SHGetFolderPath to read the Start menu folder path
       shell: cmd
