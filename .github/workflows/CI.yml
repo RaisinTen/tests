@@ -19,6 +19,11 @@ jobs:
       uses: ilammy/msvc-dev-cmd@v1
     - uses: actions/checkout@v2
 
+    - name: Query Start menu folder descriptions from registry
+      shell: cmd
+      run: |
+        reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{625B53C3-AB48-4EC1-BA1F-A1EF4146FC19}"
+
     - name: Compile program that uses SHGetFolderPath to read the Start menu folder path
       shell: cmd
       run: |
@@ -28,11 +33,6 @@ jobs:
       shell: cmd
       run: |
         reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "Start Menu"
-
-    - name: Query Start menu folder descriptions from registry
-      shell: cmd
-      run: |
-        reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions" /v "{625B53C3-AB48-4EC1-BA1F-A1EF4146FC19}"
 
     - name: Read Start menu folder path using SHGetFolderPath
       shell: cmd
