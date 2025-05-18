@@ -53,13 +53,11 @@ const nextDirPath = (name = 'rm') =>
   rm(filePath, { force: true }, (err) => {
     try {
       fs.chmodSync(dirname, 0o777);
-    } catch {
-    }
+    } catch {}
 
     try {
       fs.chmodSync(filePath, 0o777);
-    } catch {
-    }
+    } catch {}
 
     let isValidState = true;
     const exists = fs.existsSync(filePath);
