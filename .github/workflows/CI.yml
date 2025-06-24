@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [windows-latest]
+        platform: [windows-11-arm]
     runs-on: ${{ matrix.platform }}
 
     steps:
@@ -24,4 +24,5 @@ jobs:
       shell: cmd
       run: |
         where node
-        dir 'C:\Program Files (x86)\Windows Kits\10\bin'
+        node -v
+        node -p process.arch
