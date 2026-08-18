@@ -15,13 +15,6 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - uses: RaisinTen/actions/node-base@use-node-base-in-make-pear-app
       with:
-        node-version: '19.x'
-
-    - name: Test
-      shell: cmd
-      run: |
-        where node
-        dir 'C:\Program Files (x86)\Windows Kits\10\bin'
+        node-auth-token: ${{ github.token }}
