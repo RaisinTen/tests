@@ -28,10 +28,10 @@ jobs:
     - name: Build
       shell: bash
       run: |
+        npm run make:linux-x64
+        npm run make:linux-arm64
         npm run make:darwin-arm64
         npm run make:darwin-x64
-        npm run make:linux-arm64
-        npm run make:linux-x64
         npm run make:win32-arm64
         npm run make:win32-x64
 
