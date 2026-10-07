@@ -11,17 +11,51 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [windows-latest]
+        platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
       with:
-        node-version: '19.x'
+        node-version: lts/*
 
-    - name: Test
-      shell: cmd
+    - name: Install
+      shell: bash
       run: |
-        where node
-        dir 'C:\Program Files (x86)\Windows Kits\10\bin'
+        npm ci
+
+    - name: Build
+      shell: bash
+      run: |
+        npm run make:darwin-arm64
+        npm run make:darwin-x64
+        npm run make:linux-arm64
+        npm run make:linux-x64
+        npm run make:win32-arm64
+        npm run make:win32-x64
+
+    - name: Inspect
+      shell: bash
+      run: |
+        tree -a out
+
+        file out/darwin-arm64/tests
+        file out/darwin-x64/tests
+
+        file out/linux-arm64/tests
+        file out/linux-x64/tests
+
+        file out/win32-arm64/tests.exe
+        file out/win32-x64/tests.exe
+
+    - name: Test linux build
+      shell: bash
+      run: |
+        out/linux-x64/tests --standalone --host linux-x64 --out ./linux app.mjs
+        ./linux/tests
+
+    - name: Test macOS build
+      shell: bash
+      run: |
+        out/linux-x64/tests --standalone --host darwin-arm64 --out ./darwin-arm64 app.mjs

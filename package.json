@@ -4,8 +4,12 @@
   "description": "This is a test Nothing to see here",
   "main": "index.js",
   "scripts": {
-    "version": "electron -v",
-    "start": "electron test.js"
+    "make:darwin-arm64": "bare-build --standalone --host darwin-arm64 --out ./out/darwin-arm64 bin.mjs",
+    "make:darwin-x64": "bare-build --standalone --host darwin-x64 --out ./out/darwin-x64 bin.mjs",
+    "make:linux-arm64": "bare-build --standalone --host linux-arm64 --out ./out/linux-arm64 bin.mjs",
+    "make:linux-x64": "bare-build --standalone --host linux-x64 --out ./out/linux-x64 bin.mjs",
+    "make:win32-arm64": "bare-build --standalone --host win32-arm64 --out ./out/win32-arm64 bin.mjs",
+    "make:win32-x64": "bare-build --standalone --host win32-x64 --out ./out/win32-x64 bin.mjs"
   },
   "repository": {
     "type": "git",
@@ -19,6 +23,6 @@
   },
   "homepage": "https://github.com/RaisinTen/tests#readme",
   "dependencies": {
-    "electron": "18.0.0"
+    "bare-build": "^1.3.1"
   }
 }
