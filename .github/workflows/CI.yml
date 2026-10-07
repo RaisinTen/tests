@@ -52,10 +52,10 @@ jobs:
     - name: Test linux build
       shell: bash
       run: |
-        out/linux-x64/tests --standalone --host linux-x64 --out ./linux app.mjs
+        out/linux-x64/tests linux-x64 ./linux app.mjs
         ./linux/tests
 
     - name: Test macOS build
       shell: bash
       run: |
-        out/linux-x64/tests --standalone --host darwin-arm64 --out ./darwin-arm64 app.mjs
+        out/linux-x64/tests darwin-arm64 ./darwin-arm64 app.mjs
