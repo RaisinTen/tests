@@ -34,8 +34,8 @@ jobs:
     - name: Test linux build
       shell: bash
       run: |
-        out/linux-x64/tests linux-x64 ./linux app.mjs
-        ./linux/tests
+        out/linux-x64/tests linux-x64 ./linux-x64 app.mjs
+        ./linux-x64/app
 
     - name: Test macOS build
       shell: bash
