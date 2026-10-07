@@ -29,25 +29,7 @@ jobs:
       shell: bash
       run: |
         npm run make:linux-x64
-        npm run make:linux-arm64
-        npm run make:darwin-arm64
-        npm run make:darwin-x64
-        npm run make:win32-arm64
-        npm run make:win32-x64
-
-    - name: Inspect
-      shell: bash
-      run: |
-        tree -a out
-
-        file out/darwin-arm64/tests
-        file out/darwin-x64/tests
-
-        file out/linux-arm64/tests
         file out/linux-x64/tests
-
-        file out/win32-arm64/tests.exe
-        file out/win32-x64/tests.exe
 
     - name: Test linux build
       shell: bash
@@ -59,3 +41,22 @@ jobs:
       shell: bash
       run: |
         out/linux-x64/tests darwin-arm64 ./darwin-arm64 app.mjs
+        file darwin-arm64/*
+
+    - name: Build rest
+      shell: bash
+      run: |
+        npm run make:linux-arm64
+        file out/linux-arm64/tests
+
+        npm run make:darwin-arm64
+        file out/darwin-arm64/tests
+
+        npm run make:darwin-x64
+        file out/darwin-x64/tests
+
+        npm run make:win32-arm64
+        file out/win32-arm64/tests.exe
+
+        npm run make:win32-x64
+        file out/win32-x64/tests.exe
