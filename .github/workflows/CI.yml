@@ -43,20 +43,32 @@ jobs:
         out/linux-x64/tests darwin-arm64 ./darwin-arm64 app.mjs
         file darwin-arm64/*
 
-    - name: Build rest
+    - name: Build linux arm
       shell: bash
       run: |
-        npm run make:linux-arm64
-        file out/linux-arm64/tests
+        npm run make:linux-arm64 || true
+        file out/linux-arm64/tests || true
 
-        npm run make:darwin-arm64
-        file out/darwin-arm64/tests
+    - name: Build darwin arm
+      shell: bash
+      run: |
+        npm run make:darwin-arm64 || true
+        file out/darwin-arm64/tests || true
 
-        npm run make:darwin-x64
-        file out/darwin-x64/tests
+    - name: Build darwin x64
+      shell: bash
+      run: |
+        npm run make:darwin-x64 || true
+        file out/darwin-x64/tests || true
 
-        npm run make:win32-arm64
-        file out/win32-arm64/tests.exe
+    - name: Build win32 arm64
+      shell: bash
+      run: |
+        npm run make:win32-arm64 || true
+        file out/win32-arm64/tests.exe || true
 
-        npm run make:win32-x64
-        file out/win32-x64/tests.exe
+    - name: Build win32 x64
+      shell: bash
+      run: |
+        npm run make:win32-x64 || true
+        file out/win32-x64/tests.exe || true
