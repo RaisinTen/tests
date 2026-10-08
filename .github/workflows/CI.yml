@@ -11,17 +11,64 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [windows-latest]
+        platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
       with:
-        node-version: '19.x'
+        node-version: lts/*
 
-    - name: Test
-      shell: cmd
+    - name: Install
+      shell: bash
       run: |
-        where node
-        dir 'C:\Program Files (x86)\Windows Kits\10\bin'
+        npm ci
+
+    - name: Build
+      shell: bash
+      run: |
+        npm run make:linux-x64
+        file out/linux-x64/tests
+
+    - name: Test linux build
+      shell: bash
+      run: |
+        out/linux-x64/tests linux-x64 ./linux-x64 app.mjs
+        ./linux-x64/app
+
+    - name: Test macOS build
+      shell: bash
+      run: |
+        out/linux-x64/tests darwin-arm64 ./darwin-arm64 app.mjs
+        file darwin-arm64/*
+
+    - name: Build linux arm
+      shell: bash
+      run: |
+        npm run make:linux-arm64 || true
+        file out/linux-arm64/tests || true
+
+    - name: Build darwin arm
+      shell: bash
+      run: |
+        npm run make:darwin-arm64 || true
+        file out/darwin-arm64/tests || true
+
+    - name: Build darwin x64
+      shell: bash
+      run: |
+        npm run make:darwin-x64 || true
+        file out/darwin-x64/tests || true
+
+    - name: Build win32 arm64
+      shell: bash
+      run: |
+        npm run make:win32-arm64 || true
+        file out/win32-arm64/tests.exe || true
+
+    - name: Build win32 x64
+      shell: bash
+      run: |
+        npm run make:win32-x64 || true
+        file out/win32-x64/tests.exe || true
