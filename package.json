@@ -4,8 +4,7 @@
   "description": "This is a test Nothing to see here",
   "main": "index.js",
   "scripts": {
-    "version": "electron -v",
-    "start": "electron test.js"
+    "test": "bare test.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +18,6 @@
   },
   "homepage": "https://github.com/RaisinTen/tests#readme",
   "dependencies": {
-    "electron": "18.0.0"
+    "bare-runtime": "^1.34.1"
   }
 }
