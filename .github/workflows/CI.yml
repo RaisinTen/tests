@@ -28,7 +28,7 @@ jobs:
     - name: Test with node
       shell: cmd
       run: |
-        node test.js
+        node test2.js
 
     - name: Test with bare
       shell: cmd
