@@ -16,3 +16,10 @@ for (const input of [ordinary, extended, os.tmpdir()]) {
     console.error(JSON.stringify(input), '=> ERROR:', err.message)
   }
 }
+
+console.log(
+  'resolve forward slashes:',
+  JSON.stringify(
+    path.resolve('C:/Users/RUNNER~1/AppData/Local/Temp/entry.js')
+  )
+)
