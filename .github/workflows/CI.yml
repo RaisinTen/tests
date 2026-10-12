@@ -25,7 +25,12 @@ jobs:
       run: |
         npm ci
 
-    - name: Test
+    - name: Test with node
+      shell: cmd
+      run: |
+        node test.js
+
+    - name: Test with bare
       shell: cmd
       run: |
         npm test
