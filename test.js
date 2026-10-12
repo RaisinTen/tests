@@ -1,13 +1,6 @@
-const path = require('bare-path')
 const { pathToFileURL } = require('bare-url')
 
-const ordinary = 'C:/Users/RUNNER~1/AppData/Local/Temp/entry.js'
-const namespaced = path.toNamespacedPath(ordinary)
+const input = String.raw`\\?\C:\Users\test\entry.js`
 
-console.log('namespaced:', JSON.stringify(namespaced))
-
-try {
-  console.log(pathToFileURL(namespaced).href)
-} catch (err) {
-  console.error('ERROR:', err.code, err.message)
-}
+console.log(JSON.stringify(input))
+console.log(pathToFileURL(input).href)
